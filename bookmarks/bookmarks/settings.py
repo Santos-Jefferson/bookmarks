@@ -32,13 +32,16 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'account.apps.AccountConfig',
+    'social_django',
+    'easy_thumbnails',
+    'django_extensions',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-
+    'images.apps.ImagesConfig',
 ]
 
 MIDDLEWARE = [
@@ -83,6 +86,16 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
+
+AUTHENTICATION_BACKENDS = [
+    'django.contrib.auth.backends.ModelBackend',
+    'account.authentication.EmailAuthBackend',
+    'social_core.backends.facebook.FacebookOAuth2',
+]
+
+SOCIAL_AUTH_FACEBOOK_KEY = '278488836548019'  # Facebook App ID
+SOCIAL_AUTH_FACEBOOK_SECRET = '8912d16aea7664bf4718a671a839dc46'  # Facebook App Secret
+SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
 
 AUTH_PASSWORD_VALIDATORS = [
     {
